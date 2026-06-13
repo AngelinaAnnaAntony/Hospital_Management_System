@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/doctor_dashboard.css">
+</head>
+<body>
+    <div class="sidebar">
+    <h2>Doctor Panel</h2>
+
+    <a href="doctor_dashboard.html">Dashboard</a>
+    <a href="view_appointments.html">Appointments</a>
+    <a href="view_patients.html">Patients</a>
+    <a href="diagnosis.html">Diagnosis</a>
+    <a href="add_pres.html">Prescriptions</a>
+    <a href="view_profile.html">Profile</a>
+    <a href="logout.html">Logout</a>
+</div>
+
+<div class="main">
+    <h1>Diagnosis & Treatment Notes</h1>
+
+    <div class="section">
+        <form method="POST">
+            <label>Patient Name</label><br>
+            <input type="text" name="patient" required placeholder="Enter name"><br><br>
+            <label>Diagnosis</label><br>
+            <textarea name="diagnosis" rows="5" cols="50" required placeholder="Enter diagnosis"></textarea><br><br>
+            <label>Treatment Notes</label><br>
+            <textarea name="treatment" rows="5" cols="50" required placeholder="Enter notes"></textarea><br><br>
+            <button type="submit">Save Notes</button>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
