@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointments</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='patient_myAppointment.css')}}">
+     <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+                <h2>AegisHealth</h2>
+
+            <a href="{{url_for('dashboard')}}">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+
+            <a href="{{url_for('profile')}}">
+                <i class="fa-solid fa-user"></i> Profile
+            </a>
+
+            <a href="{{url_for('bookappointment')}}">
+                <i class="fa-solid fa-calendar-check"></i> Book Appointments
+            </a>
+
+            <a href="{{url_for('myappointment')}}" class="active">
+                <i class="fa-solid fa-list"></i> My Appointments
+            </a>
+
+            <a href="{{url_for('prescription')}}">
+                <i class="fa-solid fa-prescription"></i> Prescriptions
+            </a>
+
+            <a href="{{url_for('medicalrecord')}}">
+                <i class="fa-solid fa-file-medical"></i> Medical Records
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-credit-card"></i> Bills & Payments
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </div>
+        <div class="main-content">
+            <div class="page-header">
+                <div class="icon">
+                    <i class="fa-solid fa-list"></i>
+                    <h2>My Appointments</h2>
+                </div>
+                <i class="fa-solid fa-user-circle profile"></i>
+            </div>
+
+            <div class="appointment-card">
+                <div class="card-header">
+                    <h3>
+                        <i class="fa-solid fa-calendar-check"></i>
+                        Upcoming Appointments
+                    </h3>
+                </div>
+                <div class="card-content">
+                    <i class="fa-solid fa-calendar-xmark empty-icon"></i>
+                    <h3>No appointments yet</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile</title>
+
+    <link rel="stylesheet"
+          href="{{url_for('static',filename='patient_profile.css')}}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="sidebar">
+            <h2>AegisHealth</h2>
+
+            <a href="{{url_for('dashboard')}}">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+
+            <a href="{{url_for('profile')}}" class="active">
+                <i class="fa-solid fa-user"></i> Profile
+            </a>
+
+            <a href="{{url_for('bookappointment')}}">
+                <i class="fa-solid fa-calendar-check"></i> Book Appointments
+            </a>
+
+            <a href="{{url_for('myappointment')}}">
+                <i class="fa-solid fa-list"></i> My Appointments
+            </a>
+
+            <a href="{{url_for('prescription')}}">
+                <i class="fa-solid fa-prescription"></i> Prescriptions
+            </a>
+
+            <a href="{{url_for('medicalrecord')}}">
+                <i class="fa-solid fa-file-medical"></i> Medical Records
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-credit-card"></i> Bills & Payments
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </div>
+        <div class="main-content">
+
+            <div class="page-header">
+                <h2>My Profile</h2>
+                <i class="fa-solid fa-user-circle"></i>
+            </div>
+            <div class="profile-container">
+
+                <div class="profile-section">
+
+                    <div class="profile-header">
+                        <h3>Personal Information</h3>
+                        <button class="btn-edit">Edit Profile</button>
+                    </div>
+
+                    <form>
+
+                        <div class="details">
+                            <label><strong>Full Name</strong></label>
+                            <input type="text" name="fullname" required>
+                        </div>
+
+                        <div class="details">
+                            <label><strong>Age</strong></label>
+                            <input type="number" name="age" required>
+                        </div>
+
+                        <div class="details">
+                            <label><strong>Gender</strong></label>
+                            <select name="gender">
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="details">
+                            <label><strong>Phone Number</strong></label>
+                            <input type="number" name="phone" required>
+                        </div>
+
+                        <div class="details">
+                            <label><strong>Email</strong></label>
+                            <input type="email" name="email" required>
+                        </div>
+
+                        <div class="details">
+                            <label><strong>Address</strong></label>
+                            <textarea rows="4" cols="30"
+                                      name="address" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn">
+                            Save Profile
+                        </button>
+
+                    </form>
+
+                </div>
+
+                <div class="password">
+
+                    <div class="password-header">
+                        <h3>Change Password</h3>
+                    </div>
+
+                    <form>
+
+                        <div class="details">
+                            <label><strong>Current Password</strong></label>
+                            <input type="password"
+                                   name="current_password" required>
+                        </div>
+
+                        <div class="details">
+                            <label><strong>New Password</strong></label>
+                            <input type="password"
+                                   name="new_password" required>
+                        </div>
+
+                        <div class="details">
+                            <label><strong>Confirm Password</strong></label>
+                            <input type="password"
+                                   name="confirm_password" required>
+                        </div>
+
+                        <button type="submit" class="btn-password">
+                            Update Password
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment Page</title>
+
+    <link rel="stylesheet" href="{{url_for('static',filename='patient_bookAppointment.css')}}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+
+            <h2>AegisHealth</h2>
+
+            <a href="{{url_for('dashboard')}}">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+
+            <a href="{{url_for('profile')}}">
+                <i class="fa-solid fa-user"></i> Profile
+            </a>
+
+            <a href="{{url_for('bookappointment')}}" class="active">
+                <i class="fa-solid fa-calendar-check"></i> Book Appointments
+            </a>
+
+            <a href="{{url_for('myappointment')}}">
+                <i class="fa-solid fa-list"></i> My Appointments
+            </a>
+
+            <a href="{{url_for('prescription')}}">
+                <i class="fa-solid fa-prescription"></i> Prescriptions
+            </a>
+
+            <a href="{{url_for('medicalrecord')}}">
+                <i class="fa-solid fa-file-medical"></i> Medical Records
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-credit-card"></i> Bills & Payments
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- Header -->
+            <div class="page-header">
+
+                <div class="icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <h1>Book Appointment</h1>
+                </div>
+
+                <i class="fa-solid fa-user-circle profile-icon"></i>
+
+            </div>
+
+            <!-- Appointment Container -->
+            <div class="appointment-container">
+
+                <!-- Left Description Card -->
+                <div class="appointment-description">
+
+                    <div class="appointment-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <h2>Book Your Appointment</h2>
+
+                    <p>
+                        Please fill in the appointment details
+                        to schedule your consultation with our
+                        healthcare specialists.
+                    </p>
+
+                </div>
+
+                <!-- Right Appointment Form -->
+                <div class="appointment-section">
+
+                    <div class="appointment-header">
+                        <h2><i class="fa-solid fa-doctor"></i>Appointment Details</h2>
+                    </div>
+
+                    <form>
+
+                        <div class="details">
+                            <label><strong>Department</strong></label>
+
+                            <select name="department" required>
+                                <option value="">Select Department</option>
+                                <option>General Medicine</option>
+                                <option>Cardiology</option>
+                                <option>Dermatology</option>
+                                <option>Orthopedics</option>
+                                <option>Neurology</option>
+                                <option>Pediatrics</option>
+                            </select>
+                        </div>
+
+                        <div class="details">
+                            <label><strong>Doctor</strong></label>
+
+                            <select name="doctor" required>
+                                <option value="">Select Doctor</option>
+                                <option>Dr. Sarah</option>
+                                <option>Dr. Joe</option>
+                                <option>Dr. David</option>
+                                <option>Dr. Daniel</option>
+                                <option>Dr. Emily</option>
+                            </select>
+                        </div>
+
+                        <div class="details">
+                            <label><strong>Date</strong></label>
+                            <input type="date" name="date" required>
+                        </div>
+
+                        <div class="details">
+                            <label><strong>Time Slot</strong></label>
+                            <input type="time" name="time" required>
+                        </div>
+
+                        <div class="details">
+                            <label><strong>Reason</strong></label>
+                            <textarea rows="4" cols="20"
+                                      name="reason" required></textarea>
+                        </div>
+                    <div class="btn-group" >
+                        <button type="submit" class="submit-btn">
+                            Book Appointment
+                        </button>
+                        <button type="reset" class="reset-btn">
+                            Reset
+                        </button>
+                    </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
