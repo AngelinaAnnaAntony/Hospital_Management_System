@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Registration</title>
+
+    <link rel="stylesheet" href="../static/style1.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="main">
+
+    <div class="sidebar">
+
+        <div class="logo">
+            <h2>HMS</h2>
+            <p>Hospital Management System</p>
+        </div>
+
+        <div class="menu">
+
+            <a href="admin.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-user"></i>
+                Patient Records
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-calendar"></i>
+                Appointments
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-user-doctor"></i>
+                Doctors
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-file-prescription"></i>
+                Prescriptions
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-file-invoice"></i>
+                Billing
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="content">
+
+        <div class="topbar">
+
+            <div class="profile">
+                <i class="fa-solid fa-user-circle"></i>
+                Admin
+            </div>
+
+        </div>
+
+        <h1 class="page-title">Doctor Registration</h1>
+
+        <div class="card">
+
+            <form>
+
+                <h3>Personal Information</h3>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Full Name:</label>
+                        <input type="text" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Age:</label>
+                        <input type="number" required>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>E-mail:</label>
+                        <input type="email" required>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Gender:</label>
+
+                        <div class="gender">
+
+                            <label>
+                                <input type="radio" name="gender">
+                                Male
+                            </label>
+
+                            <label>
+                                <input type="radio" name="gender">
+                                Female
+                            </label>
+
+                            <label>
+                                <input type="radio" name="gender">
+                                Other
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <h3>Professional Information</h3>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Qualification:</label>
+                        <input type="text" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Years of Experience:</label>
+                        <input type="number">
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Specialisation:</label>
+
+                        <select>
+                            <option value="">Select Specialization</option>
+                            <option value="Cardiologist">Cardiologist</option>
+                            <option value="Dermatologist">Dermatologist</option>
+                            <option value="Neurologist">Neurologist</option>
+                            <option value="Orthopedic Surgeon">Orthopedic Surgeon</option>
+                            <option value="Pediatrician">Pediatrician</option>
+                            <option value="Gynecologist">Gynecologist</option>
+                            <option value="Ophthalmologist">Ophthalmologist</option>
+                            <option value="ENT Specialist">ENT Specialist</option>
+                            <option value="Psychiatrist">Psychiatrist</option>
+                            <option value="General Physician">General Physician</option>
+                            <option value="Pulmonologist">Pulmonologist</option>
+                            <option value="Urologist">Urologist</option>
+                            <option value="Oncologist">Oncologist</option>
+                            <option value="Endocrinologist">Endocrinologist</option>
+                            <option value="Gastroenterologist">Gastroenterologist</option>
+                            <option value="Nephrologist">Nephrologist</option>
+                            <option value="Rheumatologist">Rheumatologist</option>
+                            <option value="Anesthesiologist">Anesthesiologist</option>
+                            <option value="Radiologist">Radiologist</option>
+                            <option value="Pathologist">Pathologist</option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Department:</label>
+
+                        <select>
+                            <option value="">Select Department</option>
+                            <option value="General Medicine">General Medicine</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Dermatology">Dermatology</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Orthopedics">Orthopedics</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                            <option value="Gynecology">Gynecology</option>
+                            <option value="Ophthalmology">Ophthalmology</option>
+                            <option value="ENT">ENT</option>
+                            <option value="Psychiatry">Psychiatry</option>
+                            <option value="Pulmonology">Pulmonology</option>
+                            <option value="Urology">Urology</option>
+                            <option value="Oncology">Oncology</option>
+                            <option value="Endocrinology">Endocrinology</option>
+                            <option value="Gastroenterology">Gastroenterology</option>
+                            <option value="Nephrology">Nephrology</option>
+                            <option value="Radiology">Radiology</option>
+                            <option value="Pathology">Pathology</option>
+                            <option value="Emergency Medicine">Emergency Medicine</option>
+                            <option value="Anesthesiology">Anesthesiology</option>
+                            <option value="Surgery">Surgery</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label>Consultation Fee:</label>
+                        <input type="number">
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn">
+                    Register Doctor
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

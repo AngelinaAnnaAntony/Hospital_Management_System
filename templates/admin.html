@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="main">
+        <div class="logo">
+            <h2>HMS</h2>
+            <p>Hospital Management System</p>
+            <div class="icons">
+                <a href="admin.html" class="i"> <i class="fa-solid fa-house"></i>  Dashboard</a><br><br>
+                <a href="" class="i"><i class="fa-solid fa-user"></i> Patient Records</a><br><br>
+                <a href="" class="i"><i class="fa-solid fa-calendar"></i> Appointments</a><br><br>
+                <a href="" class="i"><i class="fa-solid fa-user-doctor"></i> Doctors</a><br><br>
+                <a href="" class="i" ><i class="fa-solid fa-file-prescription"></i> Prescriptions</a><br><br>
+                <a href="" class="i"><i class="fa-solid fa-file-invoice"></i> Billing</a><br><br>
+                <a href="" class="i"><i class="fa-solid fa-gear"></i> Settings</a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="title">
+                <h1>Admin Dashboard</h1>
+            </div>
+            <div class="topbox">
+                <div class="topb">
+                    <div class="topbicons"><i class="fa-solid fa-users"></i></div>
+                    <p>Total Patients</p>
+                </div>
+                <div class="topb">
+                    <div class="topbicons"><i class="fa-solid fa-calendar"></i></div>
+                    <p>Appointments</p>
+                </div>
+                <div class="topb">
+                    <div class="topbicons"><i class="fa-solid fa-user-doctor"></i></div>
+                    <p>Doctors</p>
+                </div>
+                <div class="topb">
+                    <div class="topbicons"><i class="fa-solid fa-file-invoice"></i></div>
+                    <p>Total Revenue</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="actions">
+                    <h2>Quick Actions</h2>
+                    <div class="box1">
+                        <a href="add_doc.html">
+                            <button class="b1">Add Doctors</button>
+                        </a>
+                        <a href="add_pat.html">
+                            <button class="b2">Add Patients</button>
+                        </a>
+                    </div>
+                    <div class="box2">
+                        <a href="bookings.html">
+                            <button class="b3">Book Appointments</button>
+                        </a>
+                        <a href="bills.html">
+                            <button class="b4">Generate Bills</button>
+                        </a>
+
+                        <a href="stat.html">
+                            <button class="b5">Hospital Statistics</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="table">
+                    <h2>Recent Appointments</h2>
+                    <table border="1">
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Patient Name</th>
+                            <th>Department</th>
+                            <th>Doctor ID</th>
+                            <th>Date</th>
+                            <th>Mode</th>
+                            <th>Status</th>
+                        </tr>
+                    </table>
+                    <a href="">View all Bookings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
