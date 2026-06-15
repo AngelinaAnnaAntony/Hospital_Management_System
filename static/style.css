@@ -1,118 +1,144 @@
 body{
-    margin:0;
-    background-color:rgb(172, 205, 238);
-    /* overflow:hidden;
-    height:100vh; */
-}
-.main{
     display:flex;
+    background-color: rgb(226, 229, 239);
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
 }
 
-.logo{
+.sidebar{
     width:250px;
     height:100vh;
-    background-color:rgb(36, 36, 88);
-    color:white;
-    padding:20px;
-}
-.logo a{
-    text-decoration: none;
-    color:white;
-    padding:10px;
-}
-.i{
-    padding:20px;
-    border-radius: 8px;
-}
-.i:hover{
-    background-color: rgb(81, 81, 165);;
+    overflow-y: auto;
+    background:#0f1f4b;
+    padding-top:30px;
 }
 
-.content{
-    flex:1;
-}
-.title{
-    background:white;
-    padding:5px;
+.sidebar h2{
+    color:white;
     text-align:center;
+    margin-bottom:30px;
 }
-.topbox{
-    display:flex;
-    gap:20px;
-    padding:25px;
-}
-.topb{
-    display:flex;
-    width:230px;
-    height:50px;
-    background-color: white;
-    border-radius:8px;
-    padding:30px;
-    font-size: 18px;
-}
-.topbicons{
-    border-radius: 4px;
-    background-color:rgb(172, 205, 238);
-    padding:10px;
-}
-.box{
-    display:flex;
-    gap:20px;
-    padding:35px;
-}
-.actions{
-    width:550px;
-    background:white;
-    border-radius:8px;
-    padding:20px;
-}
-.table{
-    width:550px;
-    background:white;
-    border-radius:8px;
-    padding:20px;
-}
-.icons{
-    /* padding:10px; */
-    margin-top: 120px;
+.sidebar p{
+    color: whitesmoke;
+    margin: 10px;
 }
 
-button{
-    width:250px;
-    height:70px;
-    border:none;
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:12px 10px;
+    margin:4px 10px;
     border-radius:8px;
-    margin:10px;
-    cursor:pointer;
 }
-.b1{
-    background-color:rgb(199,171,226);
+
+.sidebar a:hover{
+    background:#4229b4;
+}
+
+/* Main Content */
+
+.main{
+    flex:1;
+    padding:20px;
+}
+
+.header{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.header h1{
+    color:#0f1f4b;
+}
+
+/* Cards */
+
+.cards{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.card{
+    flex:1;
+    min-width:220px;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card h2{
+    color:#6c4df6;
+    margin-bottom:10px;
+}
+.card p{
+    font-size: 20px;
+}
+.card i{
+    font-size: 20px;
+}
+
+.section{
+    background:white;
+    margin-top:25px;
+    padding:20px;
+    border-radius:12px;
     
 }
-.b1:hover{
-    background-color:rgb(174, 122, 225);
+.section a{
+    display: flex;
+    justify-content: flex-end;
+    text-decoration: none;
 }
-.b2{
-    background-color:rgb(237,241,188);
+
+.section h2{
+    color:#0f1f4b;
+    margin-bottom:20px;
 }
-.b2:hover{
-   background-color:rgb(237, 246, 136);
+
+.actions{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    padding:10px;
 }
-.b3{
-    background-color:rgb(161,224,231);
+
+.actions button{
+    height:70px;
+    width:200px;
+    background:#6c4df6;
+    color:white;
+    border:none;
+    
+    border-radius:8px; 
 }
-.b3:hover{
-    background-color:rgb(133, 231, 241);
+
+.actions button:hover{
+    background:#5638e8;
 }
-.b4{
-    background-color:rgb(231,144,144);
+
+
+table{
+    width:100%;
+  
 }
-.b4:hover{
-    background-color:rgb(231, 111, 111);
+
+th, td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
 }
-.b5{
-    background-color:rgb(198, 245, 200);
+
+th{
+    background:#f3f4f8;
 }
-.b5:hover{
-    background-color:rgb(157, 250, 161);
+.active{
+    background: #4229b4;
+    color: white;
+    font-weight: bold;
 }
