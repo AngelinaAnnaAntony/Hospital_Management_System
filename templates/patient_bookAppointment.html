@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointments</title>
 
-    <link rel="stylesheet" href="../static/page.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='page.css')}}">
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -23,35 +23,32 @@
 
         <div class="menu">
 
-            <a href="admin.html">
+            <a href="{{url_for('/dashboard')}}">
                 <i class="fa-solid fa-house"></i>
                 Dashboard
             </a>
 
-            <a href="#">
+            <a href="{{url_for('/profile')}}">
                 <i class="fa-solid fa-user"></i>
                 Profile
             </a>
 
-            <a href="#">
+            <a href="{{url_for('/bookappointment')}}" class="active">
                 <i class="fa-solid fa-calendar"></i>
                 Book Appointments
             </a>
 
-            <a href="#">
+            <a href="{{url_for('/prescription')}}">
                 <i class="fa-solid fa-file-prescription"></i>
                 Prescriptions
             </a>
 
             <a href="#">
                 <i class="fa-solid fa-file-invoice"></i>
-                Billing
+                Bills & Payments
             </a>
 
-            <a href="#">
-                <i class="fa-solid fa-gear"></i>
-                Settings
-            </a>
+             <a href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
 
         </div>
 

@@ -129,3 +129,8 @@ select{
 .btn:hover{
     background: #16a34a;
 }
+.active{
+    background: #4229b4;
+    color: white;
+    font-weight: bold;
+}
