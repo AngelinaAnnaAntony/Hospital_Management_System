@@ -1,19 +1,24 @@
 import sqlite3
 
-conn=sqlite3.connect("hospital.db")
-cursor=conn.cursor()
+def get_connection():
+    conn=sqlite3.connect("hospital.db")
+    conn.row_factory=sqlite3.Row
+    return conn
 
-cursor.execute('''CREATE TABLE IF NOT EXISTS patient(p_id INT PRIMARY KEY AUTOINCREMENT,
-               p_name TEXT,age INTEGER,mail TEXT,gender TEXT,bgroup TEXT,allergy TEXT,
-               med_condition TEXT,emg_name TEXT,emg_nmbr TEXT)''')
+def create_tables():
+    
+    conn=get_connection()
+    cursor=conn.cursor()
 
-cursor.execute('''CREATE TABLE IFN OT EXISTS doctor(d_id INT PRIMARY KEY AUTOINCREMENT,
-               d_name TEXT,age INTEGER,mail TEXT,gender TEXT,qualification TEXT,
-               specialisation TEXT,dept TEXT,yoe INTEGER,fee INTEGER) ''')
+    cursor.execute('''CREATE TABLE IF NOT EXISTS patients(p_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT,age INTEGER,email TEXT
+                ,gender TEXT,blood_group TEXT,allergies TEXT,
+                medical_conditions TEXT,emergency_name TEXT,emergency_number TEXT)''')
 
-cursor.execute('''CREATE TABLE IF NOT EXISTS appointment(a_id INTEGER PRIMARY KEY,p_id INTEGER,
-               p_name TEXT,d_id INTEGER,doa DATE,mode TEXT,status TEXT,FOREIGN KEY(p_id)REFERENCES patient(p_id),
-               FOREIGN KEY(d_id)REFERENCES doctor(d_id))''')
+    # cursor.execute('''CREATE TABLE IF NOT EXISTS appointment(a_id INTEGER PRIMARY KEY,p_id INTEGER,
+    #                p_name TEXT,d_id INTEGER,doa DATE,mode TEXT,status TEXT,FOREIGN KEY(p_id)REFERENCES patient(p_id),
+    #                FOREIGN KEY(d_id)REFERENCES doctor(d_id))''')
 
-conn.commit()
-conn.close()
+
+    conn.commit()
+    conn.close()
