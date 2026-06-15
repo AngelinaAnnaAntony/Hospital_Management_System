@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href={{url_for('static',filename="style.css")}}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <div class="sidebar">
             <h2>HMS</h2>
             <p>Hospital Management System</p>
-                <a href="admin.html" class="active"> <i class="fa-solid fa-house"></i>  Dashboard</a><br><br>
-                <a href=""><i class="fa-solid fa-user"></i> Patient Records</a><br><br>
-                <a href=""><i class="fa-solid fa-calendar"></i> Appointments</a><br><br>
-                <a href=""><i class="fa-solid fa-user-doctor"></i> Doctors</a><br><br>
-                <a href=""><i class="fa-solid fa-file-prescription"></i> Prescriptions</a><br><br>
-                <a href=""><i class="fa-solid fa-file-invoice"></i> Billing</a><br><br>
-                <a href=""><i class="fa-solid fa-gear"></i> Settings</a>
+                <a href="/" class="i"> <i class="fa-solid fa-house"></i>  Dashboard</a><br><br>
+                <a href="/viewpatients" class="i"><i class="fa-solid fa-user"></i> Patient Records</a><br><br>
+                <a href="" class="i"><i class="fa-solid fa-calendar"></i> Appointments</a><br><br>
+                <a href="" class="i"><i class="fa-solid fa-user-doctor"></i> Doctors</a><br><br>
+                <a href="" class="i" ><i class="fa-solid fa-file-prescription"></i> Prescriptions</a><br><br>
+                <a href="" class="i"><i class="fa-solid fa-file-invoice"></i> Billing</a><br><br>
+                <a href="" class="i"><i class="fa-solid fa-gear"></i> Settings</a>
         </div>
         <div class="main">
             
@@ -44,19 +44,19 @@
             <div class="section">
                     <h2>Quick Actions</h2>
                     <div class="actions">
-                        <a href="add_doc.html">
+                        <a href="">
                             <button><h3>Add Doctors</h3></button>
                         </a>
                         
-                        <a href="add_pat.html">
+                        <a href="/patient">
                             <button><h3>Add Patients</h3></button>
                         </a>
                    
-                        <a href="bookings.html">
+                        <a href="">
                             <button><h3>Book Appointments</h3></button>
                         </a>
                         
-                        <a href="bills.html">
+                        <a href="">
                             <button><h3>Generate Bills</h3></button>
                         </a>
 
