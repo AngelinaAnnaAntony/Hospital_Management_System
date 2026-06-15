@@ -4,8 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patients</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href={{url_for('static',filename="style1.css")}}>
 </head>
 <body>
-    
+    <div class="main">
+        <div class="sidebar">
+
+            <div class="logo">
+                <h2>HMS</h2>
+                <p>Hospital Management System</p>
+            </div>
+
+            <div class="menu">
+
+                <a href="/">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+
+                <a href="/viewpatients">
+                    <i class="fa-solid fa-user"></i>
+                    Patient Records
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-calendar"></i>
+                    Appointments
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    Doctors
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-file-prescription"></i>
+                    Prescriptions
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    Billing
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </a>
+
+            </div>
+
+        </div>
+        <div class="content">
+            <div class="topbar">
+                <h1 class="page-title">Patient Details</h1>
+                <div class="profile">
+                    <i class="fa-solid fa-user-circle"></i>
+                    Admin
+                </div>
+
+            </div>
+            <table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>E-mail</th>
+                    <th>Gender</th>
+                    <th>Blood Group</th>
+                    <th>Allergies</th>
+                    <th>Medical Conditions</th>
+                    <th>Emg. contact name</th>
+                    <th>Emg. contact number</th>
+                </tr>
+                {% for patient in patients %}
+                <tr>
+                <td>{{ patient["name"] }}</td>
+                <td>{{ patient["age"] }}</td> 
+                <td>{{ patient["email"] }}</td> 
+                <td>{{ patient["gender"] }}</td> 
+                <td>{{ patient["blood_group"] }}</td>
+                <td>{{ patient["allergies"] }}</td> 
+                <td>{{ patient["medical_conditions"] }}</td> 
+                <td>{{ patient["emergency_name"] }}</td> 
+                <td>{{ patient["emergency_number"]  }}</td>  
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 </body>
 </html>
