@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Prescription</title>
-    <link rel="stylesheet" href="{{url_for('static',filename='patient_prescription.css')}}">
+    <link rel="stylesheet" href="../static/page.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
+    <div class="main">
         <div class="sidebar">
-              <h2>AegisHealth</h2>
-
+            <div class="logo">
+                 <h2>HMS</h2>
+                 <p>Hospital Management System</p>
+            </div>
+                <div class="menu">
             <a href="{{url_for('dashboard')}}">
                 <i class="fa-solid fa-house"></i> Dashboard
             </a>
@@ -44,25 +47,23 @@
             <a href="#">
                 <i class="fa-solid fa-right-from-bracket"></i> Logout
             </a>  
-        </div>
-        <div class="main-content">
-            <div class="page-header">
-                <div class="icon">
-                      <i class="fa-solid fa-prescription-bottle-medical"></i>
-                      <h1>Prescriptions</h1>
-                </div>
-                 <i class="fa-solid fa-user-circle profile-icon"></i>
             </div>
-            <div class="Prescription-section">
-                <div class="prescription-header">
+        </div>
+        <div class="content">
+            <div class="topbar">
+                <h1 class="page-title">Prescription</h1>
+                <div class="profile">
+                    <i class="fa-solid fa-user-circle"></i>
+                    Patient
+                </div>
+
+            </div>
+
+            <div class="card">
                     <h2>
                         <i class="fa-solid fa-file-prescription"></i>
                         Prescription History
                     </h2>
-                </div>
-                <div class="prescription-content">
-                      <i class="fa-solid fa-prescription-bottle-medical prescription-icon"></i>
-                       <h3>No Prescription Found</h3>
                 </div>
             </div>
         </div>
