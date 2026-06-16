@@ -1,6 +1,7 @@
 import sqlite3
 conn=sqlite3.connect("hospital.db")
 cursor=conn.cursor()
+
 cursor.execute('''CREATE TABLE IF NOT EXISTS patient(p_id INTEGER PRIMARY KEY AUTOINCREMENT,
                p_name TEXT,age INTEGER,mail TEXT,gender TEXT,bgroup TEXT,allergy TEXT,
                med_condition TEXT,emg_name TEXT,emg_nmbr TEXT)''')
