@@ -6,7 +6,7 @@
     <title>All Appointments</title>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href={{url_for('static',filename="page.css")}}>
+    <link rel="stylesheet" href="{{url_for('static',filename='page.css')}}">
 </head>
 <body>
     <div class="main">
@@ -43,7 +43,10 @@
                     <i class="fa-solid fa-file-invoice"></i>
                     Billing
                 </a>
-
+                 <a href="#"> 
+                   <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
             </div>
 
         </div>
