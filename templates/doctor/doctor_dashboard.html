@@ -8,18 +8,15 @@
       href="{{ url_for('static', filename='doctor_dashboard.css') }}">
 </head>
 <body>
-
     <div class="sidebar">
         <h2>Doctor Panel</h2>
-
         <a href="/doctor_dashboard">Dashboard</a>
-        <a href="/view_appointments">Appointments</a>
-        <a href="/view_patients">Patients</a>
-        <a href="/diagnosis">Diagnosis</a>
-        <a href="/view_profile">Profile</a>
+        <a href="/doc-view_appointments">Appointments</a>
+        <a href="/doc-view_patients">Patients</a>
+        <a href="/doc-med_rec">Patient Medical Records</a>
+        <a href="/doc-view_profile">Profile</a>
         <a href="/logout">Logout</a>
     </div>
-
     <div class="main">
         <h1>Doctor Dashboard</h1>
         <div class="cards">
@@ -40,29 +37,16 @@
         <div class="section">
             <h2>Quick Actions</h2>
             <div class="actions">
-               <a href="/view_appointments">
+               <a href="/doc-view_appointments">
                <button><h3>View Appointments</h3></button>
                </a>
-               <a href="/view_patients">
+               <a href="/doc-view_patients">
                <button><h3>View Patients</h3></button>
-               </a>
-               <a href="/diagnosis">
-               <button><h3>Diagnosis</h3></button>
                </a>
                <a href="/add_pres">
                <button><h3>Add Prescription</h3></button>
                </a>
             </div>
-        </div>
-        <div class="section">
-            <h2>Upcoming Appointments</h2>
-            <table>
-                <tr>
-                    <th>Patient</th>
-                    <th>Time</th>
-                    <th>Status</th>
-                </tr>
-            </table>
         </div>
     </div>
 </body>
