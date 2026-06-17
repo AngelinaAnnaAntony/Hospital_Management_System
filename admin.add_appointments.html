@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointments</title>
-
-    <link rel="stylesheet" href="../static/style1.css">
-
+    <link rel="stylesheet" href={{url_for('static',filename="page.css")}}>
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
 <div class="main">
 
     <div class="sidebar">
@@ -23,17 +20,17 @@
 
         <div class="menu">
 
-            <a href="admin.html">
+            <a href="/admin">
                 <i class="fa-solid fa-house"></i>
                 Dashboard
             </a>
 
-            <a href="#">
+            <a href="/viewpatients">
                 <i class="fa-solid fa-user"></i>
                 Patient Records
             </a>
 
-            <a href="#">
+            <a href="/viewappointments">
                 <i class="fa-solid fa-calendar"></i>
                 Appointments
             </a>
@@ -44,24 +41,13 @@
             </a>
 
             <a href="#">
-                <i class="fa-solid fa-file-prescription"></i>
-                Prescriptions
-            </a>
-
-            <a href="#">
                 <i class="fa-solid fa-file-invoice"></i>
                 Billing
-            </a>
-
-            <a href="#">
-                <i class="fa-solid fa-gear"></i>
-                Settings
             </a>
 
         </div>
 
     </div>
-
     <div class="content">
 
         <div class="topbar">
@@ -75,7 +61,7 @@
 
         <div class="card">
 
-            <form>
+            <form action='/add_appointments' method='POST'>
 
                 <h3>Patient Details</h3>
 
@@ -83,12 +69,12 @@
 
                     <div class="form-group">
                         <label>Patient Name:</label>
-                        <input type="text" required>
+                        <input type="text" name="name"required>
                     </div>
 
                     <div class="form-group">
                         <label>Phone Number:</label>
-                        <input type="number">
+                        <input type="number" name="phone">
                     </div>
 
                 </div>
@@ -100,29 +86,16 @@
                     <div class="form-group">
                         <label>Department:</label>
 
-                        <select>
+                        <select name="department">
                             <option value="">Select Department</option>
                             <option value="General Medicine">General Medicine</option>
                             <option value="Cardiology">Cardiology</option>
-                            <option value="Dermatology">Dermatology</option>
-                            <option value="Neurology">Neurology</option>
                             <option value="Orthopedics">Orthopedics</option>
                             <option value="Pediatrics">Pediatrics</option>
                             <option value="Gynecology">Gynecology</option>
-                            <option value="Ophthalmology">Ophthalmology</option>
                             <option value="ENT">ENT</option>
-                            <option value="Psychiatry">Psychiatry</option>
-                            <option value="Pulmonology">Pulmonology</option>
-                            <option value="Urology">Urology</option>
-                            <option value="Oncology">Oncology</option>
-                            <option value="Endocrinology">Endocrinology</option>
                             <option value="Gastroenterology">Gastroenterology</option>
-                            <option value="Nephrology">Nephrology</option>
-                            <option value="Radiology">Radiology</option>
-                            <option value="Pathology">Pathology</option>
                             <option value="Emergency Medicine">Emergency Medicine</option>
-                            <option value="Anesthesiology">Anesthesiology</option>
-                            <option value="Surgery">Surgery</option>
                         </select>
 
                     </div>
@@ -131,7 +104,7 @@
 
                         <label>Available Doctors:</label>
 
-                        <select>
+                        <select name="doctor">
                             <option></option>
                         </select>
 
@@ -143,26 +116,27 @@
 
                     <div class="form-group">
                         <label>Appointment Date:</label>
-                        <input type="date">
+                        <input type="date" name="date">
                     </div>
 
                     <div class="form-group">
                         <label>Appointment Time Slot:</label>
-                        <input type="time">
+                        <input type="time" name="time">
                     </div>
 
                 </div>
 
                 <div class="form-group">
                     <label>Symptoms:</label>
-                    <textarea rows="5" cols="40"></textarea>
+                    <textarea rows="5" cols="40" name="symptoms"></textarea>
                 </div>
 
                 <div class="form-group">
 
-                    <label>Preferred Consulatation Type:</label>
+                    <label>Preferred Consulatation Mode:</label>
 
-                    <select>
+                    <select name="mode">
+                        <option value="">Select mode</option>
                         <option>Online</option>
                         <option>Offline</option>
                     </select>
@@ -180,6 +154,5 @@
     </div>
 
 </div>
-
 </body>
 </html>
