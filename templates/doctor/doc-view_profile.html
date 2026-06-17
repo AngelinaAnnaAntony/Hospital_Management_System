@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='doctor_dashboard.css') }}">
+</head>
+<body>
+     <div class="sidebar">
+        <h2>Doctor Panel</h2>
+        <a href="/doctor_dashboard">Dashboard</a>
+        <a href="/doc-view_appointments">Appointments</a>
+        <a href="/doc-view_patients">Patients</a>
+        <a href="/doc-med_rec">Patient Medical Info</a>
+        <a href="/doc-view_profile">Profile</a>
+        <a href="/drlogout">Logout</a>
+    </div>
+
+<h1>Doctor Profile</h1>
+<div class="section">
+<form method="POST">
+    <label>ID</label>
+    <input type="number" name="d_id" placeholder="Enter id">
+    <br><br>
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Enter name">
+    <br><br>
+    <label>Specialization</label>
+    <input type="text" name="specialization" placeholder="Enter specialization">
+    <br><br>
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Enter email">
+    <br><br>
+    <button type="submit"> Save Profile </button>
+</form>
+</div>
+</body>
+</html>

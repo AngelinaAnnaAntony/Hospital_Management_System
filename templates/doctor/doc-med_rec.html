@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='doctor_dashboard.css') }}">
+</head>
+<body>
+      <div class="sidebar">
+        <h2>Doctor Panel</h2>
+        <a href="/doctor_dashboard">Dashboard</a>
+        <a href="/doc-view_appointments">Appointments</a>
+        <a href="/doc-view_patients">Patients</a>
+        <a href="/doc-med_rec">Patient Medical Info</a>
+        <a href="/doc-view_profile">Profile</a>
+        <a href="/drlogout">Logout</a>
+    </div>
+
+<div class="main">
+    <h1>Patient Medical Records</h1>
+
+    <div class="section">
+        <form method="POST">
+            <label>Patient Name</label>
+            <input type="text" name="patient" required placeholder="Enter name"><br><br>
+            <label>Diagnosis</label>
+            <textarea name="diagnosis" rows="5" cols="50" required placeholder="Enter diagnosis"></textarea><br><br>
+            <label>Treatment Notes</label>
+            <textarea name="treatment" rows="5" cols="50" required placeholder="Enter notes"></textarea><br><br>
+            <button type="submit">Save Notes</button>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>
