@@ -18,6 +18,18 @@ def create_tables():
     cursor.execute('''CREATE TABLE IF NOT EXISTS patients(p_id INTEGER PRIMARY KEY AUTOINCREMENT,
                    name TEXT,age INTEGER,email TEXT,gender TEXT,blood_group TEXT,allergies TEXT,
                 medical_conditions TEXT,emergency_name TEXT,emergency_number TEXT)''')
-
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS appointment(
+            app_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            patient_name TEXT,
+            phone TEXT,
+            department TEXT,
+            doctor TEXT,
+            date TEXT,
+            time TEXT,
+            symptoms TEXT,
+            mode TEXT
+        )
+    """)
     conn.commit()
     conn.close()
