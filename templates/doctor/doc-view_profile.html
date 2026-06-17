@@ -9,18 +9,20 @@
 <body>
      <div class="sidebar">
         <h2>Doctor Panel</h2>
-
         <a href="/doctor_dashboard">Dashboard</a>
-        <a href="/view_appointments">Appointments</a>
-        <a href="/view_patients">Patients</a>
-        <a href="/diagnosis">Diagnosis</a>
-        <a href="/view_profile">Profile</a>
+        <a href="/doc-view_appointments">Appointments</a>
+        <a href="/doc-view_patients">Patients</a>
+        <a href="/doc-med_rec">Patient Medical Records</a>
+        <a href="/doc-view_profile">Profile</a>
         <a href="/logout">Logout</a>
     </div>
 
 <h1>Doctor Profile</h1>
 <div class="section">
 <form method="POST">
+    <label>ID</label>
+    <input type="number" name="d_id" placeholder="Enter id">
+    <br><br>
     <label>Name</label>
     <input type="text" name="name" placeholder="Enter name">
     <br><br>
