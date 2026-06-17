@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Appointments</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href={{url_for('static',filename="page.css")}}>
+</head>
+<body>
+    <div class="main">
+        <div class="sidebar">
+
+            <div class="logo">
+                <h2>HMS</h2>
+                <p>Hospital Management System</p>
+            </div>
+
+            <div class="menu">
+
+                <a href="/admin">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+
+                <a href="/viewpatients">
+                    <i class="fa-solid fa-user"></i>
+                    Patient Records
+                </a>
+
+                <a href="/viewappointments">
+                    <i class="fa-solid fa-calendar"></i>
+                    Appointments
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    Doctors
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    Billing
+                </a>
+
+            </div>
+
+        </div>
+        <div class="content">
+            <div class="topbar">
+                <h1 class="page-title">Appointment Details</h1>
+                <div class="profile">
+                    <i class="fa-solid fa-user-circle"></i>
+                    Admin
+                </div>
+
+            </div>
+            <div class="card">
+                <table border="1">
+                    <tr>
+                        <th>App.ID</th>
+                        <!-- <th>PID</th> -->
+                        <th>Patient Name</th>
+                        <th>Phone</th>
+                        <th>Department</th>
+                        <!-- <th>Doc.ID</th> -->
+                        <th>Doctor Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Symptoms</th>
+                        <th>Mode</th>
+                    </tr>
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td> {{ appointment["app_id"] }} </td>
+                        <td> {{ appointment["patient_name"] }} </td>
+                        <td> {{ appointment["phone"] }} </td>
+                        <td> {{ appointment["department"] }} </td>
+                        <td> {{ appointment["doctor"] }} </td>
+                        <td> {{ appointment["date"] }} </td>
+                        <td> {{ appointment["time"] }} </td>
+                        <td> {{ appointment["symptoms"] }} </td>
+                        <td> {{ appointment["mode"] }} </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
