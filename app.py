@@ -3,16 +3,16 @@ from flask import Flask, render_template,request,url_for
 from database import get_connection,create_tables
 app = Flask(__name__)
 create_tables()
-@app.route('/')
-def home():
+@app.route('/doctor')
+def doctor():
     return render_template('doctor/doctor_dashboard.html')
 
 @app.route('/doc-view_appointments')
-def view_appointments():
+def drview_appointments():
     return render_template('doctor/doc-view_appointments.html')
 
 @app.route('/doc-view_patients')
-def view_patients():
+def drview_patients():
     return render_template('doctor/doc-view_patients.html')
 
 @app.route('/doc-med_rec', methods=['GET', 'POST'])
@@ -21,12 +21,12 @@ def med_rec():
         patient = request.form['patient']
         diagnosis = request.form['diagnosis']
         treatment = request.form['treatment']
-        con = sqlite3.connect('hospital.db')
-        cursor = con.cursor()
+        conn = sqlite3.connect('hospital.db')
+        cursor = conn.cursor()
 
         cursor.execute("""insert into diagnosis (patient, diagnosis, treatment) values (?, ?, ?)""", (patient, diagnosis, treatment))
-        con.commit()
-        con.close()
+        conn.commit()
+        conn.close()
         return render_template('doctor/doc-med_rec.html')
     return render_template('doctor/doc-med_rec.html')
 
@@ -36,12 +36,12 @@ def add_pres():
         patient = request.form['patient']
         medicine = request.form['medicine']
         dosage = request.form['dosage']
-        
-        con= sqlite3.connect('hospital.db')
-        cursor = con.cursor()
+             
+        conn= sqlite3.connect('hospital.db')
+        cursor = conn.cursor()
         cursor.execute("""insert into prescriptions(patient, medicine, dosage) values(?, ?, ?)""", (patient, medicine, dosage))
-        con.commit()
-        con.close()
+        conn.commit()
+        conn.close()
         return render_template('doctor/add_pres.html',)
     return render_template('doctor/add_pres.html')
 
@@ -49,14 +49,14 @@ def add_pres():
 def view_profile():
     return render_template('doctor/doc-view_profile.html')
 
-@app.route('/logout')
-def logout():
-    return render_template('doctor/logout.html')
-@app.route('/doctor')
-def doctor():
-    return render_template('doctor_login.html')
+@app.route('/drlogout')
+def drlogout():
+    return render_template('doctor/drlogout.html')
 
-#Doctor Login
+@app.route('/doctor_login')
+def login():
+    return render_template('doctor/doctor_login.html')
+
 @app.route('/doctor_login',methods=['POST'])
 def doctor_login():
     username = request.args('username')
@@ -89,12 +89,12 @@ def add_doc():
     return render_template('add_doc.html')
 @app.route('/view_doc')
 def view_doc():
-    con = sqlite3.connect('hospital.db')
-    con.row_factory = sqlite3.Row   # allows column names
-    cursor = con.cursor()
+    conn = sqlite3.connect('hospital.db')
+    conn.row_factory = sqlite3.Row   # allows column names
+    cursor = conn.cursor()
     cursor.execute("SELECT * FROM doctor")
     doctors= cursor.fetchall()
-    con.close()
+    conn.close()
     return render_template('view_doc.html', doctors=doctors)
 
 if __name__== '__main__':

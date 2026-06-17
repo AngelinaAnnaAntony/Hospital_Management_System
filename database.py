@@ -1,12 +1,12 @@
 import sqlite3
 def get_connection():
-    con= sqlite3.connect("hospital.db")
-    con.row_factory = sqlite3.Row
-    return con
+    conn= sqlite3.connect("hospital.db")
+    conn.row_factory = sqlite3.Row
+    return conn
 
 def create_tables():
-    con= get_connection()
-    cursor = con.cursor()
+    conn= get_connection()
+    cursor = conn.cursor()
     cursor.execute("""create table if not exists doctor(d_id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,
                age INTEGER,email TEXT,gender TEXT,qualification TEXT,experience INTEGER,specialization TEXT,
     department TEXT,cons_fee REAL)""")
@@ -19,5 +19,5 @@ def create_tables():
                    name TEXT,age INTEGER,email TEXT,gender TEXT,blood_group TEXT,allergies TEXT,
                 medical_conditions TEXT,emergency_name TEXT,emergency_number TEXT)''')
 
-    con.commit()
-    con.close()
+    conn.commit()
+    conn.close()
