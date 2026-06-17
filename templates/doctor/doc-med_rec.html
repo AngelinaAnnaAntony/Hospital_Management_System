@@ -10,25 +10,24 @@
 <body>
      <div class="sidebar">
         <h2>Doctor Panel</h2>
-
         <a href="/doctor_dashboard">Dashboard</a>
-        <a href="/view_appointments">Appointments</a>
-        <a href="/view_patients">Patients</a>
-        <a href="/diagnosis">Diagnosis</a>
-        <a href="/view_profile">Profile</a>
+        <a href="/doc-view_appointments">Appointments</a>
+        <a href="/doc-view_patients">Patients</a>
+        <a href="/doc-med_rec">Patient Medical Records</a>
+        <a href="/doc-view_profile">Profile</a>
         <a href="/logout">Logout</a>
     </div>
 
 <div class="main">
-    <h1>Diagnosis & Treatment Notes</h1>
+    <h1>Treatment Notes</h1>
 
     <div class="section">
         <form method="POST">
-            <label>Patient Name</label><br>
+            <label>Patient Name</label>
             <input type="text" name="patient" required placeholder="Enter name"><br><br>
-            <label>Diagnosis</label><br>
+            <label>Diagnosis</label>
             <textarea name="diagnosis" rows="5" cols="50" required placeholder="Enter diagnosis"></textarea><br><br>
-            <label>Treatment Notes</label><br>
+            <label>Treatment Notes</label>
             <textarea name="treatment" rows="5" cols="50" required placeholder="Enter notes"></textarea><br><br>
             <button type="submit">Save Notes</button>
         </form>
