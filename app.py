@@ -172,7 +172,7 @@ def doctor_login():
 def doctor_dashboard():
     return render_template('doctor/doctor_dashboard.html')
 
-@app.route('/add_doc', methods=['GET','POST'])
+@app.route('/admin.add_doctor', methods=['GET','POST'])
 def add_doc():
     if request.method=='POST':
         name = request.form['name']
