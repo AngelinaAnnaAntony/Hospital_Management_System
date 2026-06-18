@@ -190,8 +190,8 @@ def add_doc():
         values(?,?,?,?,?,?,?,?,?)""", (name,age,email,gender,qualification,experience,specialization,department, cons_fee))
         conn.commit()
         conn.close()
-        return render_template('add_doc.html',message="Doctor Registered Successfully")
-    return render_template('add_doc.html')
+        return render_template('admin.add_doctor.html',message="Doctor Registered Successfully")
+    return render_template('admin.add_doctor.html')
 
 @app.route('/view_doc')
 def view_doc():
