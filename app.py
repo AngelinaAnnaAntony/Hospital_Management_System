@@ -1,16 +1,107 @@
 import sqlite3
 from flask import Flask, render_template, request, redirect, url_for
 from database import get_connection,create_tables
+from datetime import datetime
 app = Flask(__name__)
 create_tables()
+
+
+@app.route('/', methods=['GET','POST'])
+def login():
+    if request.method == 'POST':
+
+        roles = request.form['role']
+        username = request.form['username']
+        password = request.form['password']
+
+        conn = sqlite3.connect('hospital.db')
+        cursor = conn.cursor()
+
+        cursor.execute(
+            '''
+            SELECT *
+            FROM user
+            WHERE role=?
+            username=?
+            AND password=?
+            ''',
+            (roles, username, password)
+        )
+
+        usern = cursor.fetchone()
+        conn.close()
+
+        if usern:
+
+            if roles == 'patient':
+                return redirect(url_for('patients'))
+
+            elif roles == 'doctor':
+                return redirect(url_for('doctor'))
+
+            elif roles == 'Admin':
+                return redirect(url_for('admin'))
+
+        return "Invalid Email or Password"
+
+    return render_template('login.html')
+
+@app.route('/register', methods=['GET','POST'])
+def register():
+
+    if request.method == 'POST':
+
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        name = request.form['name']
+        phone = request.form['phone']
+
+        conn = sqlite3.connect('hospital.db')
+        cursor = conn.cursor()
+
+        cursor.execute(
+            '''
+            INSERT INTO user(
+            username,
+            email,
+            password,
+            role,
+            name,
+            phone
+            )
+            VALUES(?,?,?,?,?,?)
+            ''',
+            (
+            username,
+            email,
+            password,
+            'patient',
+            name,
+            phone
+            )
+        )
+
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for('login'))
+
+    return render_template("register.html")
+
+
+
+
+
 #admin
 @app.route('/admin')
 def admin():
     return render_template("admin_dashboard.html")
 
-@app.route('/patient')
+@app.route('/patients')
 def patient():
-    return render_template("admin.add_patients.html")
+    return render_template("patient_dashboard.html")
+
 
 @app.route('/add_patient',methods=['GET','POST'])
 def add_patient():
@@ -158,15 +249,15 @@ def view_profile():
 def drlogout():
     return render_template('doctor/drlogout.html')
 
-@app.route('/doctor_login')
-def login():
-    return render_template('doctor/doctor_login.html')
+# @app.route('/doctor_login')
+# def login():
+#     return render_template('doctor/doctor_login.html')
 
-@app.route('/doctor_login', methods=['POST'])
-def doctor_login():
-    username = request.form['username']
-    password = request.form['password']
-    return render_template('doctor/doctor_dashboard.html')
+# @app.route('/doctor_login', methods=['POST'])
+# def doctor_login():
+#     username = request.form['username']
+#     password = request.form['password']
+#     return render_template('doctor/doctor_dashboard.html')
 
 @app.route('/doctor_dashboard')
 def doctor_dashboard():
