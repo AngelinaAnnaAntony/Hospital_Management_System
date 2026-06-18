@@ -107,7 +107,7 @@ def add_appointments():
         conn = get_connection()
         cursor = conn.cursor()
         
-        cursor.execute('''INSERT INTO appointments(patient_name,phone,department,doctor,date,time,symptoms,mode)VALUES(?,?,?,?,?,?,?,?)''',
+        cursor.execute('''INSERT INTO appointment(patient_name,phone,department,doctor,date,time,symptoms,mode)VALUES(?,?,?,?,?,?,?,?)''',
                         (name,phone,department,doctor,date,time,symptoms,mode))
 
         conn.commit()
@@ -124,7 +124,7 @@ def viewappointments():
     conn=get_connection()
     cursor=conn.cursor()
     
-    cursor.execute("SELECT* FROM appointments")
+    cursor.execute("SELECT* FROM appointment")
     appointments=cursor.fetchall()
     conn.close()
     return render_template('admin.view_appointments.html',appointments=appointments)
