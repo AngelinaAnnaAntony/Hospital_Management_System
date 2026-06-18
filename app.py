@@ -204,7 +204,7 @@ def view_doc():
     cursor.execute("SELECT * FROM doctor")
     doctors= cursor.fetchall()
     conn.close()
-    return render_template('view_doc.html', doctors=doctors)
+    return render_template('admin.view_doctor.html', doctors=doctors)
 #patient
 @app.route('/patient_dashboard')
 def patient_dashboard():
