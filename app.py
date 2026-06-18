@@ -1,8 +1,113 @@
 import sqlite3
-from flask import Flask, render_template,request,url_for
+from flask import Flask, render_template, request, redirect, url_for
 from database import get_connection,create_tables
 app = Flask(__name__)
 create_tables()
+#admin
+@app.route('/admin')
+def admin():
+    return render_template("admin_dashboard.html")
+
+@app.route('/patient')
+def patient():
+    return render_template("admin.add_patients.html")
+
+@app.route('/add_patient',methods=['GET','POST'])
+def add_patient():
+    if request.method == 'POST':
+        name = request.form["name"]
+        age = request.form["age"]
+        email = request.form["email"]
+        gender = request.form["gender"]
+        blood = request.form["blood_group"]
+        allergy = request.form["allergies"]
+        medical_conditions = request.form["medical_conditions"]
+        emergency_name = request.form["emergency_name"]
+        emergency_number = request.form["emergency_number"]
+
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            INSERT INTO patients
+            (
+                name,age,email,gender,blood_group,allergies,medical_conditions,
+                emergency_name,emergency_number
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            name,
+            age,
+            email,
+            gender,
+            blood,
+            allergy,
+            medical_conditions,
+            emergency_name,
+            emergency_number
+        ))
+
+        conn.commit()
+        conn.close()
+
+    return render_template("admin.add_patients.html")
+
+@app.route('/viewpat')
+def viewpat():
+    return render_template("admin.view_patients.html")
+
+@app.route('/viewpatients')
+def viewpatients():
+    conn=get_connection()
+    cursor=conn.cursor()
+    
+    cursor.execute("SELECT* FROM patients")
+    patients=cursor.fetchall()
+    conn.close()
+    return render_template('admin.view_patients.html',patients=patients)
+
+@app.route("/appointments")
+def appointments():
+    return render_template("admin.add_appointments.html")
+
+@app.route("/add_appointments",methods=['GET','POST'])
+def add_appointments():
+    if request.method=='POST':
+        name=request.form['name']
+        phone=request.form['phone']
+        department=request.form['department']
+        doctor=request.form['doctor']
+        date=request.form['date']
+        time=request.form['time']
+        symptoms=request.form['symptoms']
+        mode=request.form['mode']
+        
+        conn = get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute('''INSERT INTO appointments(patient_name,phone,department,doctor,date,time,symptoms,mode)VALUES(?,?,?,?,?,?,?,?)''',
+                        (name,phone,department,doctor,date,time,symptoms,mode))
+
+        conn.commit()
+        conn.close()
+        
+    return render_template("admin.add_appointments.html")
+
+@app.route('/viewappoints')
+def viewappoints():
+    return render_template("admin.view_appointments.html")
+
+@app.route('/viewappointments')
+def viewappointments():
+    conn=get_connection()
+    cursor=conn.cursor()
+    
+    cursor.execute("SELECT* FROM appointments")
+    appointments=cursor.fetchall()
+    conn.close()
+    return render_template('admin.view_appointments.html',appointments=appointments)
+#doctor
 @app.route('/doctor')
 def doctor():
     return render_template('doctor/doctor_dashboard.html')
@@ -57,10 +162,10 @@ def drlogout():
 def login():
     return render_template('doctor/doctor_login.html')
 
-@app.route('/doctor_login',methods=['POST'])
+@app.route('/doctor_login', methods=['POST'])
 def doctor_login():
-    username = request.args('username')
-    password = request.args('password')
+    username = request.form['username']
+    password = request.form['password']
     return render_template('doctor/doctor_dashboard.html')
 
 @app.route('/doctor_dashboard')
@@ -87,6 +192,7 @@ def add_doc():
         conn.close()
         return render_template('add_doc.html',message="Doctor Registered Successfully")
     return render_template('add_doc.html')
+
 @app.route('/view_doc')
 def view_doc():
     conn = sqlite3.connect('hospital.db')
@@ -96,6 +202,65 @@ def view_doc():
     doctors= cursor.fetchall()
     conn.close()
     return render_template('view_doc.html', doctors=doctors)
+#patient
+@app.route('/pat_dashboard')
+def pat_dashboard():
+    return render_template("patient_dashboard.html")
+
+@app.route('/profile')
+def profile():
+    return render_template("patient_profile.html")
+
+@app.route('/bookappointment', methods=['GET','POST'])
+def bookappointment():
+    if request.method=='POST':
+        conn=get_connection()
+        cursor=conn.cursor()
+        
+        cursor.execute("""
+            INSERT INTO appointments
+            (patient_name, phone, department, doctor, date, time, symptoms, mode)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """, (request.form['patient_name'],
+              request.form['phone'],
+              request.form['department'],
+              request.form['doctor'],
+              request.form['date'],
+              request.form['time'],
+              request.form['symptoms'],
+              request.form['mode']))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('myappointment'))
+    return render_template("patient_bookAppointment.html")
+
+@app.route('/myappointment')
+def myappointment():
+    conn=get_connection()
+    cursor=conn.cursor()
+
+
+    cursor.execute("SELECT * FROM appointments")
+    appointments=cursor.fetchall()
+    conn.close()
+    return render_template("patient_myAppointment.html" , appointments=appointments)
+
+@app.route('/delete_appointment/<int:id>')
+def delete_appointment(id):
+    conn=get_connection()
+    cursor=conn.cursor()
+    cursor.execute("DELETE FROM appointments WHERE app_id=?",(id,))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('myappointment'))
+
+@app.route('/prescription')
+def prescription():
+    return render_template("patient_prescription.html")
+
+@app.route('/medicalrecord')
+def medicalrecord():
+    return render_template("patient_medicalReport.html")
 
 if __name__== '__main__':
     app.run(debug=True)
