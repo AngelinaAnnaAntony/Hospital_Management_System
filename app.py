@@ -72,7 +72,7 @@ def add_patient():
 
 @app.route('/doctor')
 def doctor():
-    return render_template("add_doc.html")
+    return render_template("admin.add_doctor.html")
 
 @app.route('/viewpat')
 def viewpat():
