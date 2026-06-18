@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doctor Registration</title>
 
-    <link rel="stylesheet" href="../static/style1.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -42,7 +42,7 @@
                 <i class="fa-solid fa-user-doctor"></i>
                 Doctors
             </a>
-
+    
             <a href="#">
                 <i class="fa-solid fa-file-prescription"></i>
                 Prescriptions
@@ -75,7 +75,7 @@
 
         <div class="card">
 
-            <form>
+            <form action="/doctor" method="POST">
 
                 <h3>Personal Information</h3>
 
@@ -83,12 +83,12 @@
 
                     <div class="form-group">
                         <label>Full Name:</label>
-                        <input type="text" required>
+                        <input type="text" name="name" required>
                     </div>
 
                     <div class="form-group">
                         <label>Age:</label>
-                        <input type="number" required>
+                        <input type="number" name="age" required>
                     </div>
 
                 </div>
@@ -97,7 +97,7 @@
 
                     <div class="form-group">
                         <label>E-mail:</label>
-                        <input type="email" required>
+                        <input type="email" name="email" required>
                     </div>
 
                     <div class="form-group">
@@ -107,18 +107,15 @@
                         <div class="gender">
 
                             <label>
-                                <input type="radio" name="gender">
-                                Male
+                                <input type="radio" name="gender" value="Male"> Male
                             </label>
 
                             <label>
-                                <input type="radio" name="gender">
-                                Female
+                                <input type="radio" name="gender" value="Female"> Female
                             </label>
 
                             <label>
-                                <input type="radio" name="gender">
-                                Other
+                                <input type="radio" name="gender" value="Other"> Other
                             </label>
 
                         </div>
@@ -133,12 +130,12 @@
 
                     <div class="form-group">
                         <label>Qualification:</label>
-                        <input type="text" required>
+                        <input type="text" name="qualification" required>
                     </div>
 
                     <div class="form-group">
                         <label>Years of Experience:</label>
-                        <input type="number">
+                        <input type="number" name="experience">
                     </div>
 
                 </div>
@@ -149,7 +146,7 @@
 
                         <label>Specialisation:</label>
 
-                        <select>
+                        <select name="specialization">
                             <option value="">Select Specialization</option>
                             <option value="Cardiologist">Cardiologist</option>
                             <option value="Dermatologist">Dermatologist</option>
@@ -179,7 +176,7 @@
 
                         <label>Department:</label>
 
-                        <select>
+                        <select name="department">
                             <option value="">Select Department</option>
                             <option value="General Medicine">General Medicine</option>
                             <option value="Cardiology">Cardiology</option>
@@ -212,7 +209,7 @@
 
                     <div class="form-group">
                         <label>Consultation Fee:</label>
-                        <input type="number">
+                        <input type="number" name="consultation_fee">
                     </div>
 
                 </div>

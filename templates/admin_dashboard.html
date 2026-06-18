@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+<<<<<<< HEAD
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+=======
     <link rel="stylesheet" href="{{url_for('static',filename='dashboard.css')}}">
+>>>>>>> b2db16f33cedbd15c675e14825ce2faa0fc291ea
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -25,23 +29,26 @@
             
                 <h1>Admin Dashboard</h1>
 
-            <div class="cards">
-                <div class="card">
-                    <i class="fa-solid fa-users"></i>
-                    <p>Total Patients</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-calendar"></i>
-                    <p>Appointments</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-user-doctor"></i>
-                    <p>Doctors</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-file-invoice"></i>
-                    <p>Total Revenue</p>
-                </div>
+        <div class="card">
+            <i class="fa-solid fa-users"></i>
+            <h2>{{ total_patients }}</h2>
+            <p>Total Patients</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-calendar"></i>
+            <h2>{{ appointments }}</h2>
+            <p>Appointments</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-user-doctor"></i>
+            <h2>{{ doctors }}</h2>
+            <p>Doctors</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-file-invoice"></i>
+            <h2>{{ total_revenue }}</h2>
+            <p>Total Revenue</p>
+        </div>
             </div>
             <div class="section">
                     <h2>Quick Actions</h2>
@@ -80,6 +87,16 @@
                             <th>Mode</th>
                             <th>Status</th>
                         </tr>
+                        {% for appt in recent_appointments %}
+                        <tr>
+                            <td>{{ appt['p_id'] }}</td>
+                            <td>{{ appt['p_name'] }}</td>
+                            <td>{{ appt['d_id'] }}</td>
+                            <td>{{ appt['doa'] }}</td>
+                            <td>{{ appt['mode'] }}</td>
+                            <td>{{ appt['status'] }}</td>
+                        </tr>
+                        {% endfor %}
                     </table>
         </div>
     </div>
