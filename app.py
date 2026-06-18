@@ -1,26 +1,9 @@
-from flask import Flask,render_template,request,redirect,url_for
-app=Flask(__name__)
-
-@app.route('/')
-def login():
-    return render_template("patient_login.html")
-
-@app.route('/check_login',methods=['POST'])
-def check_login():
-    email=request.form['email']
-    password=request.form['password']
-
-    if email and password:
-        return redirect(url_for('dashboard'))
-    return "Invalid Login"
-
-@app.route('/dashboard')
-def dashboard():
 import sqlite3
-from flask import Flask, render_template,request,url_for
+from flask import Flask, render_template, request, redirect, url_for
 from database import get_connection,create_tables
 app = Flask(__name__)
 create_tables()
+#admin
 @app.route('/admin')
 def admin():
     return render_template("admin_dashboard.html")
@@ -70,10 +53,6 @@ def add_patient():
 
     return render_template("admin.add_patients.html")
 
-@app.route('/doctor')
-def doctor():
-    return render_template("admin.add_doctor.html")
-
 @app.route('/viewpat')
 def viewpat():
     return render_template("admin.view_patients.html")
@@ -107,7 +86,7 @@ def add_appointments():
         conn = get_connection()
         cursor = conn.cursor()
         
-        cursor.execute('''INSERT INTO appointment(patient_name,phone,department,doctor,date,time,symptoms,mode)VALUES(?,?,?,?,?,?,?,?)''',
+        cursor.execute('''INSERT INTO appointments(patient_name,phone,department,doctor,date,time,symptoms,mode)VALUES(?,?,?,?,?,?,?,?)''',
                         (name,phone,department,doctor,date,time,symptoms,mode))
 
         conn.commit()
@@ -124,13 +103,11 @@ def viewappointments():
     conn=get_connection()
     cursor=conn.cursor()
     
-    cursor.execute("SELECT* FROM appointment")
+    cursor.execute("SELECT* FROM appointments")
     appointments=cursor.fetchall()
     conn.close()
     return render_template('admin.view_appointments.html',appointments=appointments)
-
-if _name== "main_" :
-    app.run(debug=True)
+#doctor
 @app.route('/doctor')
 def doctor():
     return render_template('doctor/doctor_dashboard.html')
@@ -185,10 +162,10 @@ def drlogout():
 def login():
     return render_template('doctor/doctor_login.html')
 
-@app.route('/doctor_login',methods=['POST'])
+@app.route('/doctor_login', methods=['POST'])
 def doctor_login():
-    username = request.args('username')
-    password = request.args('password')
+    username = request.form['username']
+    password = request.form['password']
     return render_template('doctor/doctor_dashboard.html')
 
 @app.route('/doctor_dashboard')
@@ -215,6 +192,7 @@ def add_doc():
         conn.close()
         return render_template('add_doc.html',message="Doctor Registered Successfully")
     return render_template('add_doc.html')
+
 @app.route('/view_doc')
 def view_doc():
     conn = sqlite3.connect('hospital.db')
@@ -224,6 +202,7 @@ def view_doc():
     doctors= cursor.fetchall()
     conn.close()
     return render_template('view_doc.html', doctors=doctors)
+#patient
 @app.route('/pat_dashboard')
 def pat_dashboard():
     return render_template("patient_dashboard.html")
@@ -239,7 +218,7 @@ def bookappointment():
         cursor=conn.cursor()
         
         cursor.execute("""
-            INSERT INTO appointment
+            INSERT INTO appointments
             (patient_name, phone, department, doctor, date, time, symptoms, mode)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """, (request.form['patient_name'],
@@ -261,7 +240,7 @@ def myappointment():
     cursor=conn.cursor()
 
 
-    cursor.execute("SELECT * FROM appointment")
+    cursor.execute("SELECT * FROM appointments")
     appointments=cursor.fetchall()
     conn.close()
     return render_template("patient_myAppointment.html" , appointments=appointments)
@@ -270,7 +249,7 @@ def myappointment():
 def delete_appointment(id):
     conn=get_connection()
     cursor=conn.cursor()
-    cursor.execute("DELETE FROM appointment WHERE app_id=?",(id,))
+    cursor.execute("DELETE FROM appointments WHERE app_id=?",(id,))
     conn.commit()
     conn.close()
     return redirect(url_for('myappointment'))
@@ -283,7 +262,5 @@ def prescription():
 def medicalrecord():
     return render_template("patient_medicalReport.html")
 
-
-if __name__ == '__main__':
+if __name__== '__main__':
     app.run(debug=True)
-
