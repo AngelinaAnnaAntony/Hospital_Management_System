@@ -19,7 +19,7 @@ def create_tables():
                    name TEXT,age INTEGER,email TEXT,gender TEXT,blood_group TEXT,allergies TEXT,
                 medical_conditions TEXT,emergency_name TEXT,emergency_number TEXT)''')
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS appointment(
+        CREATE TABLE IF NOT EXISTS appointments(
             app_id INTEGER PRIMARY KEY AUTOINCREMENT,
             patient_name TEXT,
             phone TEXT,
