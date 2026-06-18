@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors</title>
+</head>
+<body>
+     <h2>Doctor Details</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Qualification</th>
+            <th>Experience</th>
+            <th>Specialization</th>
+            <th>Department</th>
+            <th>Consultation Fee</th>
+        </tr>
+
+        {% for doctor in doctors %}
+        <tr>
+            <td>{{ doctor['d_id'] }}</td>
+            <td>{{ doctor['name'] }}</td>
+            <td>{{ doctor['age'] }}</td>
+            <td>{{ doctor['email'] }}</td>
+            <td>{{ doctor['gender'] }}</td>
+            <td>{{ doctor['qualification'] }}</td>
+            <td>{{ doctor['experience'] }}</td>
+            <td>{{ doctor['specialization'] }}</td>
+            <td>{{ doctor['department'] }}</td>
+            <td>{{ doctor['cons_fee'] }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

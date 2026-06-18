@@ -3,6 +3,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from database import get_connection,create_tables
 app = Flask(__name__)
 create_tables()
+@app.route('/')
+def home():
+    return render_template("home.html")
 #admin
 @app.route('/admin')
 def admin():
@@ -172,7 +175,7 @@ def doctor_login():
 def doctor_dashboard():
     return render_template('doctor/doctor_dashboard.html')
 
-@app.route('/add_doc', methods=['GET','POST'])
+@app.route('/admin.add_doctor', methods=['GET','POST'])
 def add_doc():
     if request.method=='POST':
         name = request.form['name']
@@ -190,8 +193,8 @@ def add_doc():
         values(?,?,?,?,?,?,?,?,?)""", (name,age,email,gender,qualification,experience,specialization,department, cons_fee))
         conn.commit()
         conn.close()
-        return render_template('add_doc.html',message="Doctor Registered Successfully")
-    return render_template('add_doc.html')
+        return render_template('admin.add_doctor.html',message="Doctor Registered Successfully")
+    return render_template('admin.add_doctor.html')
 
 @app.route('/view_doc')
 def view_doc():
@@ -203,16 +206,16 @@ def view_doc():
     conn.close()
     return render_template('view_doc.html', doctors=doctors)
 #patient
-@app.route('/pat_dashboard')
-def pat_dashboard():
+@app.route('/patient_dashboard')
+def patient_dashboard():
     return render_template("patient_dashboard.html")
 
-@app.route('/profile')
-def profile():
+@app.route('/patient_profile')
+def patient_profile():
     return render_template("patient_profile.html")
 
-@app.route('/bookappointment', methods=['GET','POST'])
-def bookappointment():
+@app.route('/patient_bookAppointment', methods=['GET','POST'])
+def patient_bookAppointment():
     if request.method=='POST':
         conn=get_connection()
         cursor=conn.cursor()
@@ -231,11 +234,11 @@ def bookappointment():
               request.form['mode']))
         conn.commit()
         conn.close()
-        return redirect(url_for('myappointment'))
+        return redirect(url_for('patient_myAppointment'))
     return render_template("patient_bookAppointment.html")
 
-@app.route('/myappointment')
-def myappointment():
+@app.route('/patient_myAppointment')
+def patient_myAppointment():
     conn=get_connection()
     cursor=conn.cursor()
 
@@ -252,14 +255,14 @@ def delete_appointment(id):
     cursor.execute("DELETE FROM appointments WHERE app_id=?",(id,))
     conn.commit()
     conn.close()
-    return redirect(url_for('myappointment'))
+    return redirect(url_for('patient_myAppointment'))
 
-@app.route('/prescription')
-def prescription():
+@app.route('/patient_prescription')
+def patient_prescription():
     return render_template("patient_prescription.html")
 
-@app.route('/medicalrecord')
-def medicalrecord():
+@app.route('/patient_medicalReport')
+def patient_medicalReport():
     return render_template("patient_medicalReport.html")
 
 if __name__== '__main__':
