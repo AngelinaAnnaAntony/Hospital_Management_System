@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Appointments</title>
-    <link rel="stylesheet" href="{{url_for('static',filename='patient_myAppointment.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='page.css')}}">
      <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
+    <div class="main">
         <div class="sidebar">
-                <h2>AegisHealth</h2>
+            <div class="logo">
+                <h2>HMS</h2>
+                <p>Hospital Management System</p>
+            </div>
+
+            <div class="menu">
 
             <a href="{{url_for('dashboard')}}">
                 <i class="fa-solid fa-house"></i> Dashboard
@@ -44,26 +49,58 @@
             <a href="#">
                 <i class="fa-solid fa-right-from-bracket"></i> Logout
             </a>
+            </div>
         </div>
-        <div class="main-content">
-            <div class="page-header">
-                <div class="icon">
-                    <i class="fa-solid fa-list"></i>
-                    <h2>My Appointments</h2>
-                </div>
-                <i class="fa-solid fa-user-circle profile"></i>
+        <div class="content">
+            <div class="topbar">
+                <h1 class="page-title">My Appointments</h1>
+                 <div class="profile">
+                <i class="fa-solid fa-user-circle"></i>
+                Patient
+            </div>
+        
             </div>
 
-            <div class="appointment-card">
-                <div class="card-header">
+            <div class="card">
+                
                     <h3>
                         <i class="fa-solid fa-calendar-check"></i>
                         Upcoming Appointments
                     </h3>
-                </div>
-                <div class="card-content">
-                    <i class="fa-solid fa-calendar-xmark empty-icon"></i>
-                    <h3>No appointments yet</h3>
+                    <table border="1">
+                        <tr>
+                            <th>Appointment ID</th>
+                            <th>Patient name</th>
+                            <th>Phone</th>
+                            <th>Department</th>
+                            <th>Doctor</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Symptoms</th>
+                            <th>Mode</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for appointment in appointments %}
+                        <tr>
+                            <td>{{appointment['app_id']}}</td>
+                            <td>{{appointment['patient_name']}}</td>
+                            <td>{{appointment['phone']}}</td>
+                            <td>{{appointment['department']}}</td>
+                            <td>{{appointment['doctor']}}</td>
+                            <td>{{appointment['date']}}</td>
+                            <td>{{appointment['time']}}</td>
+                            <td>{{appointment['symptoms']}}</td>
+                            <td>{{appointment['mode']}}</td>
+                            <td>
+                                <a href="{{url_for('delete_appointment',id=appointment['app_id'])}}">
+                                    <button style="background-color:red; color:white; padding:8px 15px; border:none; cursor:pointer; border-radius: 5px;">
+                                        Delete
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
                 </div>
             </div>
 

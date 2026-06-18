@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Dashboard</title>
     <!-- <link rel="stylesheet" href="../static/patient_dashboard.css"> -->
-     <link rel="stylesheet" href="{{url_for('static',filename='patient_dashboard.css')}}">
+     <link rel="stylesheet" href="{{url_for('static',filename='dashboard.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <h2>AegisHealth</h2>
+    <div class="sidebar">
+            <h2>HMS</h2>
+            <P>Hospital Management System</P>
             <a href="{{url_for('dashboard')}}" class="active"><i class="fa-solid fa-house"></i>Dashboard</a>
             <a href="{{url_for('profile')}}"><i class="fa-solid fa-user"></i>Profile</a>
             <a href="{{url_for('bookappointment')}}"><i class="fa-solid fa-calendar-check"></i>Book Appointments</a>
@@ -21,48 +21,36 @@
             <a href="#"><i class="fa-solid fa-credit-card"></i>Bills & Payments</a>
              <a href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
         </div>
-         <div class="main-content">
-        <h1>Welcome back, Patient!</h1>
+         <div class="main">
+        <h1>Patient Dashboard</h1>
         <div class="cards">
             <div class="card">
-                <h3>Total Appointments</h3>
-                <p>5</p>
+                <p>Total Appointments</p>
             </div>
              <div class="card">
-                <h3>Upcoming Appointments</h3>
-                <p>2</p>
+                <p>Upcoming Appointments</p>
             </div>
              <div class="card">
-                <h3>Prescriptions</h3>
-                <p>3</p>
+                <p>Prescriptions</p>
             </div>
              <div class="card">
-                <h3>Medical Records</h3>
-                <p>2</p>
+                <p>Medical Records</p>
             </div>
         </div>
-        <div class="appointment-result">
-            <div class="appointment-card">
-                <h3>Upcoming Appointments</h3>
-                <p><strong>Doctor : </strong>Dr.Sarah</p>
-                <p><strong>Date : </strong>24-May-2026</p>
-                <p><strong>Time : </strong>10.30</p>
-                <button>View All</button>
+        <div class="section">
+             <h2>Quick Actions</h2>
+             <div class="actions">
+                <a href="{{url_for('bookappointment')}}">
+                    <button>Add Appointments</button>
+                </a>
+                <a href="{{url_for('myappointment')}}">
+                    <button>View Appointments</button>
+                </a>
+                <a href="{{url_for('prescription')}}">
+                    <button>View Prescriptions</button>
+                </a>
             </div>
-            <div class="quick-action">
-             <h3>Quick Actions</h3>
-             <a href="{{url_for('bookappointment')}}">
-                <button>Add Appointments</button>
-             </a>
-             <a href="{{url_for('myappointment')}}">
-                <button>View Appointments</button>
-            </a>
-            <a href="{{url_for('prescription')}}">
-                <button>View Prescriptions</button>
-            </a>
         </div>
-        </div>
-    </div>
     </div>
 </body>
 </html>
