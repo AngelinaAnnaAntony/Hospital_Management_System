@@ -61,7 +61,20 @@
                 </div>
             </div>
                 <div class="card">
-                    <i class="fa-solid fa-file-medical profile"></i>
+                    <table border="1" widht="250%">
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Diagnosis</th>
+                        <th>Treatment</th>
+                    </tr>
+                    {% for report in reports %}
+                    <tr>
+                        <td>{{report['patient']}}</td>
+                        <td>{{report['diagnosis']}}</td>
+                        <td>{{report['treatment']}}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
                     
                 </div>
             </div>
