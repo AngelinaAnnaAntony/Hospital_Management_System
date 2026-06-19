@@ -99,6 +99,7 @@ body{
 .section h2{
     color:#0f1f4b;
     margin-bottom:20px;
+
 }
 
 .actions{
@@ -114,7 +115,7 @@ body{
     background:#6c4df6;
     color:white;
     border:none;
-    
+    font-size:20px;
     border-radius:8px; 
 }
 

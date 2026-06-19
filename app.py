@@ -6,6 +6,87 @@ create_tables()
 @app.route('/')
 def home():
     return render_template("homepage.html")
+@app.route('/login', methods=['GET','POST'])
+def log():
+    if request.method == 'POST':
+
+        username = request.form['username']
+        password = request.form['password']
+
+        conn = sqlite3.connect('hospital.db')
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+
+        cursor.execute(
+            '''
+            SELECT *
+            FROM user
+            WHERE username=?
+            AND password=?
+            ''',
+            (username, password)
+        )
+
+        usern = cursor.fetchone()
+        conn.close()
+
+        if usern:
+            
+            roles = usern['role']
+            if roles == 'patient':
+                return redirect(url_for('patient_dashboard'))
+            elif roles == 'doctor':
+                return redirect(url_for('doctor'))
+            elif roles == 'admin':
+                return redirect(url_for('admin'))
+        return "Invalid Username or Password"
+    return render_template('login.html')
+
+
+@app.route('/register', methods=['GET','POST'])
+def regi():
+
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        name = request.form['name']
+        phone = request.form['phone']
+
+        conn = sqlite3.connect('hospital.db')
+        cursor = conn.cursor()
+        cursor.execute(
+            '''
+            INSERT INTO user(
+            username,
+            email,
+            password,
+            role,
+            name,
+            phone
+            )
+            VALUES(?,?,?,?,?,?)
+            ''',
+            (
+            username,
+            email,
+            password,
+            'patient',
+            name,
+            phone
+            )
+        )
+        conn.commit()
+        conn.close()
+        return redirect(url_for('login'))   
+    return render_template("register.html")
+
+@app.route('/logout')
+def logout():
+    return render_template(url_for('login'))
+
+
+
 #admin
 @app.route('/admin')
 def admin():
@@ -220,7 +301,7 @@ def add_pres():
              
         conn= sqlite3.connect('hospital.db')
         cursor = conn.cursor()
-        cursor.execute("""insert into prescriptions(patient, medicine, dosage) values(?, ?, ?)""", (patient, medicine, dosage))
+        cursor.execute("""insert into prescriptions(name, medicine, dosage) values(?, ?, ?)""", (patient, medicine, dosage))
         conn.commit()
         conn.close()
         return render_template('doctor/add_pres.html',)
@@ -281,7 +362,19 @@ def view_doc():
 #patient
 @app.route('/patient_dashboard')
 def patient_dashboard():
-    return render_template("patient_dashboard.html")
+    conn=get_connection()
+    cursor=conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM appointments")
+    total_appointments=cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM prescriptions")
+    total_prescriptions=cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM diagnosis")
+    total_reports=cursor.fetchone()[0]
+    conn.close()
+    return render_template("patient_dashboard.html",
+                           total_appointments=total_appointments,
+                           total_prescriptions=total_prescriptions,
+                           total_reports=total_reports)
 
 @app.route('/patient_profile')
 def patient_profile():
@@ -289,6 +382,7 @@ def patient_profile():
 
 @app.route('/patient_bookAppointment', methods=['GET','POST'])
 def patient_bookAppointment():
+    success=False
     if request.method=='POST':
         conn=get_connection()
         cursor=conn.cursor()
@@ -307,8 +401,8 @@ def patient_bookAppointment():
               request.form['mode']))
         conn.commit()
         conn.close()
-        return redirect(url_for('patient_myAppointment'))
-    return render_template("patient_bookAppointment.html")
+        success=True
+    return render_template("patient_bookAppointment.html",success=success)
 
 @app.route('/patient_myAppointment')
 def patient_myAppointment():
@@ -332,11 +426,26 @@ def delete_appointment(id):
 
 @app.route('/patient_prescription')
 def patient_prescription():
-    return render_template("patient_prescription.html")
+    conn=get_connection()
+    cursor=conn.cursor()
+    cursor.execute("""
+            SELECT 
+                   pr_id,name,medicine,dosage FROM prescriptions
+                   """)
+    prescriptions=cursor.fetchall()
+    conn.close()
+    return render_template("patient_prescription.html",prescriptions=prescriptions)
 
 @app.route('/patient_medicalReport')
 def patient_medicalReport():
-    return render_template("patient_medicalReport.html")
+    conn=get_connection()
+    cursor=conn.cursor()
+    cursor.execute("""
+            SELECT * FROM diagnosis
+                   """)
+    reports=cursor.fetchall()
+    conn.close()
+    return render_template("patient_medicalReport.html",reports=reports)
 
 if __name__== '__main__':
     app.run(debug=True)
