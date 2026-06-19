@@ -6,6 +6,87 @@ create_tables()
 @app.route('/')
 def home():
     return render_template("homepage.html")
+@app.route('/login', methods=['GET','POST'])
+def log():
+    if request.method == 'POST':
+
+        username = request.form['username']
+        password = request.form['password']
+
+        conn = sqlite3.connect('hospital.db')
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+
+        cursor.execute(
+            '''
+            SELECT *
+            FROM user
+            WHERE username=?
+            AND password=?
+            ''',
+            (username, password)
+        )
+
+        usern = cursor.fetchone()
+        conn.close()
+
+        if usern:
+            
+            roles = usern['role']
+            if roles == 'patient':
+                return redirect(url_for('patient_dashboard'))
+            elif roles == 'doctor':
+                return redirect(url_for('doctor'))
+            elif roles == 'admin':
+                return redirect(url_for('admin'))
+        return "Invalid Username or Password"
+    return render_template('login.html')
+
+
+@app.route('/register', methods=['GET','POST'])
+def regi():
+
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        name = request.form['name']
+        phone = request.form['phone']
+
+        conn = sqlite3.connect('hospital.db')
+        cursor = conn.cursor()
+        cursor.execute(
+            '''
+            INSERT INTO user(
+            username,
+            email,
+            password,
+            role,
+            name,
+            phone
+            )
+            VALUES(?,?,?,?,?,?)
+            ''',
+            (
+            username,
+            email,
+            password,
+            'patient',
+            name,
+            phone
+            )
+        )
+        conn.commit()
+        conn.close()
+        return redirect(url_for('login'))   
+    return render_template("register.html")
+
+@app.route('/logout')
+def logout():
+    return render_template(url_for('login'))
+
+
+
 #admin
 @app.route('/admin')
 def admin():
