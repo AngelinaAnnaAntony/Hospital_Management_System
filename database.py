@@ -31,5 +31,9 @@ def create_tables():
             mode TEXT
         )
     """)
+    cursor.execute("""CREATE TABLE IF NOT  EXISTS billings(
+        b_id INTEGER PRIMARY KEY AUTOINCREMENT, p_id INTEGER,
+        app_id INTEGER, bill_date DATE,cons_fee REAL,
+        room REAL,medicine REAL,other REAL)""")
     conn.commit()
     conn.close()

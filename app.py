@@ -5,11 +5,84 @@ app = Flask(__name__)
 create_tables()
 @app.route('/')
 def home():
-    return render_template("home.html")
+    return render_template("homepage.html")
 #admin
 @app.route('/admin')
 def admin():
-    return render_template("admin_dashboard.html")
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT COUNT(*) FROM patients")
+    total_patients = cursor.fetchone()[0]
+    
+    cursor.execute("SELECT COUNT(*) FROM doctor")
+    total_doctors = cursor.fetchone()[0]
+    
+    cursor.execute("SELECT COUNT(*) FROM appointments")
+    total_appointments = cursor.fetchone()[0]
+    
+    cursor.execute("""SELECT SUM(cons_fee) + SUM(room) + SUM(medicine) +
+    SUM(other) FROM billings """)
+
+    total_revenue = cursor.fetchone()[0] or 0
+    
+    cursor.execute("""
+    SELECT app_id, patient_name, department, doctor, date, mode
+    FROM appointments LIMIT 5 """)
+
+    recent_appointments = cursor.fetchall()
+    
+    
+    
+    conn.close()
+    return render_template("admin_dashboard.html",total_patients=total_patients,
+                           doctors=total_doctors,
+                           appointments=total_appointments,
+                            total_revenue=round(total_revenue,2),
+                           recent_appointments=recent_appointments)
+                        
+@app.route('/add_bill')
+def add_bill_page():
+    return render_template('admin.bills.html')
+
+@app.route('/add_bill', methods=['POST'])
+def add_bill():
+
+    p_id = request.form['p_id']
+    app_id = request.form['app_id']
+    bill_date = request.form['bill_date']
+    cons_fee = request.form['cons_fee']
+    room = request.form['room']
+    medicine = request.form['medicine']
+    other = request.form['other']
+
+    conn = sqlite3.connect('hospital.db')
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO billings
+        (p_id, app_id, bill_date, cons_fee, room, medicine, other)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    """, (p_id, app_id, bill_date, cons_fee, room, medicine, other))
+
+    conn.commit()
+    conn.close()
+
+    return render_template('admin.bills.html', message="Bill added successfully!")
+
+@app.route('/view_bill')
+def view_bill():
+
+    conn = sqlite3.connect('hospital.db')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM billings")
+    bills = cursor.fetchall()
+
+    conn.close()
+
+    return render_template('admin.view_bills.html', bills=bills)
 
 @app.route('/patient')
 def patient():
