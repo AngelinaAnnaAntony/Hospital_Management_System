@@ -64,6 +64,22 @@
                         <i class="fa-solid fa-file-prescription"></i>
                         Prescription History
                     </h2>
+                    <table border="1" width="100%">
+                        <tr>
+                            <th>Prescription ID</th>
+                            <th>Patient Name</th>
+                            <th>Medicine</th>
+                            <th>Dosage</th>
+                        </tr>
+                        {% for prescription in prescriptions %}
+                        <tr>
+                            <td>{{prescription['pr_id']}}</td>
+                            <td>{{prescription['name']}}</td>
+                            <td>{{prescription['medicine']}}</td>
+                            <td>{{prescription['dosage']}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
                 </div>
             </div>
         </div>
