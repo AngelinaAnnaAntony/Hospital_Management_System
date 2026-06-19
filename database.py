@@ -31,6 +31,18 @@ def create_tables():
             mode TEXT
         )
     """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS user (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            role TEXT NOT NULL,
+            name TEXT NOT NULL,
+            phone TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                 );                 
+    """)
     cursor.execute("""CREATE TABLE IF NOT  EXISTS billings(
         b_id INTEGER PRIMARY KEY AUTOINCREMENT, p_id INTEGER,
         app_id INTEGER, bill_date DATE,cons_fee REAL,
