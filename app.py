@@ -271,11 +271,29 @@ def doctor():
 
 @app.route('/doc-view_appointments')
 def drview_appointments():
-    return render_template('doctor/doc-view_appointments.html')
+     conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM appointments ORDER BY app_id DESC")
+    appointments = cursor.fetchall()
+
+    conn.close()
+
+    return render_template("doctor/doc-view_appointments.html",
+                           appointments=appointments)
 
 @app.route('/doc-view_patients')
 def drview_patients():
-    return render_template('doctor/doc-view_patients.html')
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM patients ORDER BY p_id DESC")
+    patients = cursor.fetchall()
+
+    conn.close()
+
+    return render_template("doctor/doc-view_patients.html",
+                           patients=patients)
 
 @app.route('/doc-med_rec', methods=['GET', 'POST'])
 def med_rec():
@@ -446,6 +464,18 @@ def patient_medicalReport():
     reports=cursor.fetchall()
     conn.close()
     return render_template("patient_medicalReport.html",reports=reports)
+
+@app.route('/patient_bills/<int:patient_id>')
+def patient_bills(patient_id):
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM billings WHERE p_id=?",(patient_id,))
+        bills = cursor.fetchall()
+
+        conn.close()
+
+        return render_template("patient_bills.html", bills=bills)
 
 if __name__== '__main__':
     app.run(debug=True)
