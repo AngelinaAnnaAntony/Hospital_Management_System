@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Bills</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='page.css')}}">
+
+</head>
+
+<body>
+
+<a class="back-btn" href="/patient_dashboard">← Back to Dashboard</a>
+
+<h2>My Bills</h2>
+
+<div class="table-container">
+
+    {% if bills %}
+
+    <table>
+       <tr>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Date</th>
+    </tr>
+
+    {% for b in bills %}
+    <tr>
+        <td>{{ b['amount'] }}</td>
+        <td>{{ b['description'] }}</td>
+        <td>{{ b['date'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</div>
+
+</body>
+</html>
